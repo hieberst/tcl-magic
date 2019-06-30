@@ -75,10 +75,7 @@ class TclMagics(Magics):
             raise UsageError('%tcl FILENAME [ARGS...]')
         else:
             name = argv[0]
-            if len(argv) == 1:
-                line = ""
-            else:
-                line = argv[1]
+            line = argv[1] if len(argv) == 2 else ""
             try:
                 with open(name, "r") as file:
                     cell = file.read()
