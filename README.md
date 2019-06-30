@@ -1,7 +1,14 @@
 # Tcl magic
 
-Usage
-=====
+[IPython](https://ipython.org) extension which adds [Tcl](https://www.tcl.tk) magics.
+
+## Installation
+
+Install or upgrade with `pip`:
+
+    pip install -U tcl-magic
+
+## Usage
 
 Load the extension:
 
@@ -14,4 +21,3 @@ Use the extension:
            expr acos(-1)
 
     Out[2] 3.141592653589793
-

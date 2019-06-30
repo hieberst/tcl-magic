@@ -2,8 +2,9 @@ from setuptools import setup
 
 setup(
     name='tcl-magic',
-    version='0.0.1',
+    version='0.0.2',
     description='An IPython extension for Tcl.',
+    long_description= open('README.md').read(),
     author='Steffen Hieber',
     author_email='hieber_steffen@web.de',
     url='https://github.com/hieberst/tcl-magic',
@@ -11,6 +12,7 @@ setup(
     keywords="ipython notebook tcl",
     py_modules=['tclmagic'],
     install_requires=['ipython'],
+    platforms=['any'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
