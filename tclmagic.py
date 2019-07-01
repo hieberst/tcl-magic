@@ -3,12 +3,29 @@ IPython Tcl magics.
 """
 
 import ast
+import os
 import sys
 import tkinter
 
+from contextlib import contextmanager
+
 from IPython.core import display
 from IPython.core.magic import (Magics, magics_class, line_cell_magic, UsageError)
-from IPython.utils.io import capture_output
+
+
+@contextmanager
+def capture_fd(fd, captured):
+    """Capture a file descriptor fd and write to the file object captured."""
+    fdin, fdout = os.pipe()
+    saved = os.dup(fd)
+    os.dup2(fdout, fd)
+    try:
+        yield
+    finally:
+        os.dup2(saved, fd)
+        os.close(fdout)
+        with os.fdopen(fdin, 'r') as f:
+            captured.write(f.read())
 
 
 @magics_class  # pylint: disable=too-few-public-methods
@@ -30,9 +47,9 @@ class TclMagics(Magics):
             self._tcl.setvar("argc", len(line.split()))
             self._tcl.setvar("argv", line)
             try:
-                with capture_output() as captured:
+                # we can not use sys.stdout.fileno() in a Jupyter notebook
+                with capture_fd(1, sys.stdout), capture_fd(2, sys.stderr):
                     result = self._tcl.eval(cell)
-                captured()
             except tkinter.TclError as e:
                 sys.stderr.write("TclError: " + str(e))
         try:
