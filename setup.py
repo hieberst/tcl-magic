@@ -2,12 +2,12 @@ from setuptools import setup
 
 setup(
     name='tcl-magic',
-    version='0.0.4',
+    version='0.0.5',
     description='An IPython extension for Tcl.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     author='Steffen Hieber',
-    author_email='hieber_steffen@web.de',
+    author_email='hieberst@gmx.de',
     url='https://github.com/hieberst/tcl-magic',
     license='MIT',
     keywords="ipython notebook tcl",
@@ -15,7 +15,7 @@ setup(
     install_requires=['ipython'],
     platforms=['any'],
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: IPython',
         'Framework :: Jupyter',
