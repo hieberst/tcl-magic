@@ -10,7 +10,8 @@ import tkinter
 from contextlib import contextmanager
 
 from IPython.core import display
-from IPython.core.magic import (Magics, magics_class, line_cell_magic, UsageError)
+from IPython.core.error import UsageError
+from IPython.core.magic import (Magics, magics_class, line_cell_magic)
 
 
 @contextmanager
@@ -47,16 +48,16 @@ class TclMagics(Magics):
             self._tcl.setvar("argc", len(line.split()))
             self._tcl.setvar("argv", line)
             try:
-                # we can not use sys.stdout.fileno() in a Jupyter notebook
+                # we cannot use sys.stdout.fileno() in a Jupyter notebook
                 with capture_fd(1, sys.stdout), capture_fd(2, sys.stderr):
                     result = self._tcl.eval(cell)
+                try:
+                    result = ast.literal_eval(result)
+                except (SyntaxError, ValueError):
+                    pass
             except tkinter.TclError as e:
                 sys.stderr.write("TclError: " + str(e))
-        try:
-            result = ast.literal_eval(result)
-        except (SyntaxError, ValueError):
-            pass
-        return result if result else None
+        return result if result != "" else None
 
     @staticmethod
     def _add_tcl_syntax():
