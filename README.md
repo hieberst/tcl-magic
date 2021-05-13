@@ -14,10 +14,16 @@ Load the extension:
 
     In[1]: %load_ext tclmagic
 
-Use the extension:
+Use the line magic `%tcl` to execute external Tcl code:
 
-    In[2]: %%tcl
+    In[2]: %tcl pi.tcl
+
+    Out[2] 3.141592653589793
+
+Use the cell magic `%%tcl` to execute inline Tcl:
+
+    In[3]: %%tcl
            set tcl_precision 17
            expr acos(-1)
 
-    Out[2] 3.141592653589793
+    Out[3] 3.141592653589793

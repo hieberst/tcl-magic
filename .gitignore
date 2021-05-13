@@ -1,6 +1,7 @@
-build
-dist
+build/
+dist/
+__pycache__/
+.idea/
+.ipynb_checkpoints/
 *.egg-info
 *.pyc
-__pycache__
-.ipynb_checkpoints
