@@ -2,6 +2,13 @@
 
 [IPython](https://ipython.org) extension which adds [Tcl](https://www.tcl.tk) magics.
 
+The trigger for the development of this IPython extension was the support of a new colleague during his induction, whereby this extension helped as follows:
+
+1. Demonstrate using Tcl from within Python.
+2. Allow to use [Jupyter Notebook](https://jupyter.org) as a common environment for a short introduction to both [Python](https://www.python.org) and Tcl.
+
+My play instinct to just write a simple IPython extension was of course reason enough.
+
 ## Installation
 
 Install or upgrade with `pip`:
